@@ -1,0 +1,203 @@
+:root {
+    --color-primary: #007bff;        
+    --color-secondary: #28a745;      
+    --color-background: #f8f9fa;     
+    --color-surface: #ffffff;        
+    --color-text: #343a40;           
+    --color-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: var(--color-primary);
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+#conversionForm {
+    background-color: var(--color-surface);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--color-shadow);
+    width: 100%;
+    max-width: 450px; 
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-top: 15px;
+    color: var(--color-text);
+}
+
+input[type="number"], 
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--color-surface);
+}
+
+input[type="number"]:focus, 
+select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+#submitbtn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+#submitbtn:hover {
+    background-color: #0056b3;
+}
+
+#submitbtn:active {
+    transform: translateY(1px);
+}
+
+hr {
+    width: 100%;
+    max-width: 450px;
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+h2 {
+    color: var(--color-text);
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.historial-header {
+    display: flex;             
+    align-items: center;      
+    justify-content: space-between; 
+    margin-bottom: 15px;       
+    padding: 0 5px;            
+}
+
+.historial-header h3 {
+    margin: 0;                
+    color: #333;
+    font-size: 1.5em;
+}
+
+.order-button {
+    background-color: #5a57a8;
+    color: white;            
+    border: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    cursor: pointer;           
+    transition: background-color 0.3s ease;
+}
+
+.order-button:hover {
+    background-color: #4a4798; 
+}
+
+
+#historialList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+#historialList {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 450px;
+    background-color: var(--color-surface);
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#historialList li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 0.95rem;
+}
+
+#historialList li:last-child {
+    border-bottom: none;
+}
+
+#clearHistoryBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: var(--color-surface);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 600;
+}
+
+#clearHistoryBtn:hover {
+    background-color: #c82333;
+}
+
+@media (min-width: 600px) {
+    
+    body {
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    #conversionForm,
+    #resultadoTexto,
+    #historialList,
+    hr,
+    h2 {
+        max-width: 550px;
+    }
+}
