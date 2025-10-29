@@ -1,5 +1,6 @@
 let historialConversiones = [];
 let contadorId = 1;
+const url = 'https://dolarapi.com/v1/cotizaciones'
 let formularioInformacion = document.getElementById('conversionForm');
 let deleteHistoryBtn = document.getElementById('clearHistoryBtn');
 let historyContainer = document.getElementById('historialList');
@@ -86,3 +87,11 @@ const valores = [
     {id: 3, moneda:'BRL', precio: 240},
 ]
 
+
+async function fetchData(){
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+}
+
+fetchData()
