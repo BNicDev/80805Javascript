@@ -122,6 +122,74 @@ h2 {
     font-size: 1.5em;
 }
 
+#historialList {
+    list-style: none; 
+    padding: 0;
+    margin: 20px 0;
+}
+
+#historialList li {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); 
+    transition: transform 0.2s ease;
+}
+
+#historialList li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.transaccion-datos h4 {
+    color: #5a57a8;
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #eef;
+}
+
+.par-datos {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; 
+    gap: 0 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed #f0f0f0;
+    padding-bottom: 3px;
+}
+
+.par-datos:last-child {
+    border-bottom: none; 
+    padding-bottom: 0;
+}
+
+.par-datos p {
+    margin: 0;
+    font-size: 0.95em;
+    color: #555;
+    padding: 2px 0;
+}
+
+.par-datos p:nth-child(2) { 
+    text-align: right;
+}
+
+.par-datos.resultado {
+    margin-top: 10px;
+    border-top: 2px solid #ddd;
+    padding-top: 8px;
+    font-weight: bold;
+}
+
+.valor-convertido {
+    color: #28a745; 
+    font-size: 1.1em !important;
+}
+
 .order-button {
     background-color: #5a57a8;
     color: white;            

@@ -1,4 +1,5 @@
 let historialConversiones = [];
+const valores = []
 let contadorId = 1;
 const url = 'https://dolarapi.com/v1/cotizaciones'
 let formularioInformacion = document.getElementById('conversionForm');
@@ -6,6 +7,29 @@ let deleteHistoryBtn = document.getElementById('clearHistoryBtn');
 let historyContainer = document.getElementById('historialList');
 let ordenarBoton = document.getElementById('ordenarHistorialBtn');
 let nuevaTransaccion = document.createElement('li');
+
+
+
+async function DATA_API(){
+    try{
+        const response = await fetch(url);
+        const data = await response.json()
+        valores.length = 0;
+
+        const mapcotizaciones = data.map(cotizacion => ({
+            moneda: cotizacion.moneda,
+            precio: cotizacion.venta
+        }));
+        valores.push(...mapcotizaciones)
+    }catch(e){
+        console.error('hay un error', e)
+    }
+}
+
+async function data(){
+   await DATA_API()
+}
+ data()
 
 
 formularioInformacion .addEventListener('submit', (e)=>{
@@ -36,7 +60,7 @@ let exchange =(d,c)=>{
 
     for(let i=0; i<valores.length; i++){                                                                    
         if(d==valores[i].moneda){
-            let convertido =  c * valores[i].precio
+            let convertido =  c / valores[i].precio
             if(convertido){
                 transacciones.convertido = convertido;
                 historialConversiones.push(transacciones);
@@ -64,14 +88,27 @@ let historialtransacciones = (h)=>{
     historyContainer.innerHTML = ''
     for(let i = 0; i<h.length; i++){
         const nuevoItem = document.createElement('li');
+        const montoConvertido = h[i].convertido ? h[i].convertido.toFixed(2) : 'N/A';
+        const montoArs = h[i].montoArs.toFixed(2);
         nuevoItem.innerHTML = `
-        <div>
-            <h4>transaccion n${h[i].id}</h4>
-            <p>Moneda Elegida: ${h[i].monedaDestino}</p>
-            <p>Monto en ARS: ${h[i].montoArs}</p>
-            <p>Monto convertido a ${h[i].monedaDestino}: ${h[i].convertido}</p>
+        <div class="transaccion-datos">
+                <h4>Transacción N°${h[i].id}</h4>
+                
+                <div class="par-datos">
+                    <p>Moneda Elegida:</p> 
+                    <p class="valor-destino">${h[i].monedaDestino}</p>
+                </div>
 
-        </div>
+                <div class="par-datos">
+                    <p>Monto en ARS:</p> 
+                    <p class="valor-ars">$${montoArs}</p>
+                </div>
+                
+                <div class="par-datos resultado">
+                    <p>Monto convertido a ${h[i].monedaDestino}:</p>
+                    <p class="valor-convertido">${montoConvertido}</p>
+                </div>
+            </div>
     `
     historyContainer.appendChild(nuevoItem)
 
@@ -81,17 +118,3 @@ let acomodarHistorial =(i)=>{
     let historialacomodado = i.sort((a,b)=> b.montoArs - a.montoArs);
     return historialacomodado;
 }
-const valores = [
-    {id: 1, moneda:'USD', precio: 1570},
-    {id: 2, moneda:'EUR', precio: 1730},
-    {id: 3, moneda:'BRL', precio: 240},
-]
-
-
-async function fetchData(){
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-}
-
-fetchData()
