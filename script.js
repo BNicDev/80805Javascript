@@ -1,6 +1,6 @@
-let historialConversiones = [];
+let historialConversiones = JSON.parse(localStorage.getItem('transaccion')) || [];
 const valores = []
-let contadorId = 1;
+let contadorId = historialConversiones.length > 0 ? historialConversiones[historialConversiones.length - 1].id + 1 : 1;
 const url = 'https://dolarapi.com/v1/cotizaciones'
 let formularioInformacion = document.getElementById('conversionForm');
 let deleteHistoryBtn = document.getElementById('clearHistoryBtn');
@@ -28,6 +28,10 @@ async function DATA_API(){
 
 async function data(){
    await DATA_API()
+
+   if(historialConversiones.length > 0){
+    historialtransacciones(historialConversiones);
+   }
 }
  data()
 
@@ -45,7 +49,11 @@ formularioInformacion .addEventListener('submit', (e)=>{
     if(cantidadPesos >=1){
         exchange(divisa,cantidadPesos);
     }else{
-        alert('no ingreso ninguna valor')
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No se ingreso ningun monto valido"
+        });
     }
 });
 
